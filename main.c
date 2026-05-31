@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:36:43 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/30 06:49:28 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/05/31 12:14:46 by apo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//Main de test
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_pile *pile)
 {
 	t_stack	*tmp;
 
-	tmp = stack;
+	tmp = pile->top;
 	printf("\n=== ETAT DE LA PILE A ===\n");
 	if (!tmp)
 		printf("(Pile vide)\n");
@@ -29,18 +28,20 @@ void	print_stack(t_stack *stack)
 	printf("=========================\n\n");
 }
 
-void	free_stack(t_stack **stack)
+void	free_pile(t_pile *pile) 
 {
 	t_stack	*tmp;
 
-	if (!stack || !*stack)
+	if (!pile || !pile->top)
 		return ;
-	while (*stack)
+	while (pile->top)
 	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
+		tmp = pile->top->next;
+		free(pile->top);
+		pile->top = tmp;
 	}
+	pile->last = NULL;
+	pile->size = 0;    
 }
 
 int	main(int argc, char **argv)
@@ -49,26 +50,21 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-
-	prog.stack_a = NULL;
-	prog.stack_b = NULL;
-
+	prog.a = (t_pile){NULL, NULL, 0};
+	prog.b = (t_pile){NULL, NULL, 0};
+	
 	parse_program_flags(argc, argv, &prog);
-
 	if (!init_stack_a(&prog, argc, argv))
 	{
 		write(2, "Error\n", 6);
-		free_stack(&prog.stack_a); 
+		free_pile(&prog.a);
 		return (1);
 	}
-
-	//Attribution des index
-	assign_index(prog.stack_a);
-
+	assign_index(&prog.a);
 	printf("Stratégie (0=Simple, 3=Adaptive) : %d\n", prog.strategy);
 	printf("Mode Bench activé ? : %d\n", prog.is_bench);
-	print_stack(prog.stack_a);
-
-	free_stack(&prog.stack_a);
+	print_stack(&prog.a);
+	
+	free_pile(&prog.a);
 	return (0);
 }

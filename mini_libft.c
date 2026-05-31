@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_libft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:19:30 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/30 06:29:19 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/05/30 19:21:51 by apo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,34 +108,6 @@ int     ft_strlen(char  *s)
     return (i);
 }
 
-char    *ft_strjoin(char *s1, char *s2)
-{
-    int     i;
-    int     j;
-    char    *out;
-
-    out = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-    if (!out)
-        return (NULL);
-    i = 0;
-    while (s1 && s1[i])
-    {
-        out[i] = s1[i];
-        i++;
-    }
-    if (s1)
-        out[i++] = ' ';
-    j = 0;
-    while (s2 && s2[j])
-    {
-        out[i] = s2[j];
-        i++;
-        j++;
-    }
-    out[i] = '\0';
-    return (out);
-}
-
 char	**jsp(char const *s, char c, char **result)
 {
 	int		i;
@@ -193,4 +165,14 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
 }

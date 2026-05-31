@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:28:22 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/30 06:48:47 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/05/31 10:53:45 by apo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_stack	*create_node(int value)
 	return (new_node);
 }
 
-void	stack_add_back(t_stack **stack, t_stack *new_node)
+/*void	stack_add_back(t_stack **stack, t_stack *new_node)
 {
 	t_stack	*last;
 
@@ -57,6 +57,27 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 		last = last->next;
 	last->next = new_node;
 	new_node->prev = last;
+}*/
+
+void	pile_add_back(t_pile *pile, t_stack *new_node)
+{
+	if (!pile || !new_node)
+		return ;
+	if (!pile->top)
+	{
+		pile->top = new_node;
+		pile->last = new_node;
+		new_node->next = NULL;
+		new_node->prev = NULL;
+	}
+	else
+	{
+		new_node->next = NULL;
+		new_node->prev = pile->last;  // branche sur le dernier noeud connu
+		pile->last->next = new_node;  // ancien last pointe vers nouveau
+		pile->last = new_node;        // met à jour last
+	}
+	pile->size++;                 // size à jour
 }
 
 int	init_from_split(t_program *prog, char *str)
@@ -76,38 +97,36 @@ int	init_from_split(t_program *prog, char *str)
 		node = create_node(ft_atoi(split[i]));
 		if (!node)
 			return (free_split(split), 0);
-		stack_add_back(&(prog->stack_a), node);
+		pile_add_back(&prog->a, node);
 		i++;
 	}
-	return (free_split(split), is_duplicate(prog->stack_a));
+	if (is_duplicate(&prog->a))
+		return (free_split(split), 0);
+	return (free_split(split), 1);
 }
 
 int	init_stack_a(t_program *prog, int ac, char **av)
 {
 	int		i;
-	char *joined;
-	char *tmp;
+	t_stack	*node;
 
-	if (ac == 2 && !is_flag(av[1]))
-	{
-		printf("patate");
-		// si il y a que deux arguments (le nom du programme et une chaine)
-		return (init_from_split(prog, av[1])); // return init split
-	}
-	printf("patate");
 	i = 1;
-	while (is_flag(av[i]))
+	while (i < ac)
 	{
-		printf("%d", i);
+		if (!is_flag(av[i]))
+		{
+			if (ft_strchr(av[i], ' ')) //on parcourt tous les args, si pas un flag MAIS contient espace, c'est une string donc on split
+				return (init_from_split(prog, av[i]));
+			if (!int_is_valid(av[i]))
+				return (0);
+			node = create_node(ft_atoi(av[i]));
+			if (!node)
+				return (0);
+			pile_add_back(&prog->a, node);
+		}
 		i++;
 	}
-	joined = NULL;
-	while (av[i])
-	{
-		tmp = joined;
-		joined = ft_strjoin(tmp, av[i]);
-		free(tmp);
-		i++;
-	}
-	return (init_from_split(prog, joined));
+	if (is_duplicate(&prog->a))
+		return (0);
+	return (1);
 }

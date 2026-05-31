@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
+/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 03:05:40 by apolguil          #+#    #+#             */
-/*   Updated: 2026/05/28 19:34:03 by ahamed-i         ###   ########.fr       */
+/*   Updated: 2026/05/31 10:57:31 by apo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*int		is_overflow(char *str)
-{
-	int i;
-
-	i = 0;
-	if (str[i] == '-')
-	{
-		if (ft_strlen(str) > 11)
-			return (0);
-		if (ft_strlen(str) == 11)
-			return (ft_strncmp(*str, "-2147483648", 11) < 0);
-		return (1);
-	}
-	if (ft_strlen(str) > 10)
-		return (0);
-	if (ft_strlen(str) == 10)
-		return (ft_strncmp(*str, "2147483647", 10) < 0);
-	return (1);
-} */
 
 int	int_is_valid(char *str)
 {
@@ -60,12 +41,12 @@ int	int_is_valid(char *str)
 	return (1);
 }
 
-int	is_duplicate(t_stack *stack)
+int	is_duplicate(t_pile *pile)
 {
 	t_stack	*i;
 	t_stack	*j;
 
-	i = stack;
+	i = pile->top;
 	while (i)
 	{
 		j = i->next;
@@ -80,17 +61,17 @@ int	is_duplicate(t_stack *stack)
 	return (0);
 }
 
-void	assign_index(t_stack *stack)
+void	assign_index(t_pile *pile)
 {
 	t_stack	*i;
 	t_stack	*j;
 	int		rank;
 
-	i = stack;
+	i = pile->top;
 	while (i)
 	{
 		rank = 0;
-		j = stack;
+		j = pile->top;
 		while (j)
 		{
 			if (j->value < i->value)

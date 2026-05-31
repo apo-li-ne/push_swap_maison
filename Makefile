@@ -8,7 +8,8 @@ SRCS = main.c \
 read_all_flags.c \
 parsing.c \
 init.c \
-mini_libft.c
+mini_libft.c \
+op.c \
 
 OBJS= $(SRCS:.c=.o)
 

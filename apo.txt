@@ -1,0 +1,40 @@
+le 30/05/2026
+
+-ajout de ft_split pour traiter les entiers passés en chaînes de caractères
+
+-free_split, strchr, substr ect... en utils
+
+-init_from_split qui appelle le split pour traiter les string
+
+-je suis partie sur une mauvaise piste avec join, je voulais rejoindre tous les args en 
+ une string puis les re spliter, bref beaucoup trop compliqué j'ai abandonné
+
+-légère modification de init_stack_a pour return init_from_split quand on trouve un espace
+
+fin du parsing -> opérations
+(J'ai fait plusieurs test tout semble fonctionner mais j'ai peut être pas pensé à tout les cas d'erreurs possible, je referai des tests à tête reposée)
+
+Pour les opérations :
+
+-j'ai ajouté t_pile, avec seulement t_stack on avait prev et next et on devait parcourir toute la liste pour trouver le last, dans t_pile on a directement top et last
+ j'ai voulu rendre la liste circulaire en plus de ça (last pointe vers top et vice versa) mais ça m'a paru compliqué je verrai plus tard
+
+-du coup remplacement de stack_add_back par pile_add_back (j'ai laissé les deux pour que tu puisse comparer)
+
+-ajout d'un fichier op pour les opérations (il sera à séparer plus tard pour la norme parce que BEAUCOUP trop de fonctions)
+
+-Code de sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr, j'ai mis pleins de commentaires pour que ce soit compréhensible dis moi si ils sont pas clairs haha
+
+J'ai modifié temporairement le main par IA (puis remis comme avant) le temps vérifier que les opérations marchaient ça semble correct mais les vrais tests seront à faire une fois les algos codés
+
+Reste à faire :
+
+-Cas spéciaux 2, 3, 5 
+-is_sorted
+-Calcul du disorder
+-simple
+-Medium
+-Complex
+-Adaptive
+
+Dis moi ce sur quoi tu avances pour que je choisisse autre chose et on pourra enfin s'attaquer aux algos !

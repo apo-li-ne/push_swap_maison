@@ -10,6 +10,10 @@ parsing.c \
 init.c \
 mini_libft.c \
 op.c \
+sort_utils.c \
+sort_complex.c \
+sort_simple.c \
+sort_medium.c
 
 OBJS= $(SRCS:.c=.o)
 

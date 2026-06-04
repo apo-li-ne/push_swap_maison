@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 11:24:16 by apo               #+#    #+#             */
-/*   Updated: 2026/05/31 12:07:29 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/03 19:11:24 by ahamed-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	exec_op(t_program *prog, char *op)
+{
+	prog->op_count++;
+	write(1, op, ft_strlen(op));
+	write(1, "\n", 1);
+}
 void	swap(t_pile *pile)
 {
 	t_stack	*first;
@@ -32,23 +38,23 @@ void	swap(t_pile *pile)
 	pile->top = second; //et voilà !!
 }
 
-void	sa(t_pile *a)
+void	sa(t_program *prog)
 {
-	swap(a);
-	write(1, "sa\n", 3);
+	swap(&prog->a);
+	exec_op(prog, "sa");
 }
 
-void	sb(t_pile *b)
+void	sb(t_program *prog)
 {
-	swap(b);
-	write(1, "sb\n", 3);
+	swap(&prog->b);
+	exec_op(prog, "sb");
 }
 
-void	ss(t_pile *a, t_pile *b)
+void	ss(t_program *prog)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	swap(&prog->a);
+	swap(&prog->b);
+	exec_op(prog, "ss");
 }
 
 void	push(t_pile *from, t_pile *to)
@@ -74,16 +80,16 @@ void	push(t_pile *from, t_pile *to)
 	to->size++; // ajout d'un élément à to
 }
 
-void	pa(t_pile *a, t_pile *b)
+void	pa(t_program *prog)
 {
-	push(b, a);
-	write(1, "pa\n", 3);
+	push(&prog->b, &prog->a);
+	exec_op(prog, "pa");
 }
 
-void	pb(t_pile *a, t_pile *b)
+void	pb(t_program *prog)
 {
-	push(a, b);
-	write(1, "pb\n", 3);
+	push(&prog->a, &prog->b);
+	exec_op(prog, "pb");
 }
 
 void	rotate(t_pile *pile)
@@ -101,22 +107,22 @@ void	rotate(t_pile *pile)
 	pile->last = tmp; //et voilaaa
 }
 
-void	ra(t_pile *a)
+void	ra(t_program *prog)
 {
-	rotate(a);
-	write(1, "ra\n", 3);
+	rotate(&prog->a);
+	exec_op(prog, "ra");
 }
 
-void	rb(t_pile *b)
+void	rb(t_program *prog)
 {
-	rotate(b);
-	write(1, "rb\n", 3);
+	rotate(&prog->b);
+	exec_op(prog, "rb");
 }
 
-void	rr(t_pile *a, t_pile *b)
+void	rr(t_program *prog)
 {
-	rotate(a);
-	rotate(b);
+	rotate(&prog->a);
+	rotate(&prog->b);
 	write(1, "rr\n", 3);
 }
 
@@ -135,21 +141,21 @@ void	reverse_rotate(t_pile *pile) //bon vraiment le même principe que rotate à
 	pile->top = tmp;
 }
 
-void	rra(t_pile *a)
+void	rra(t_program *prog)
 {
-	reverse_rotate(a);
-	write(1, "rra\n", 4);
+	reverse_rotate(&prog->a);
+	exec_op(prog, "rra");
 }
 
-void	rrb(t_pile *b)
+void	rrb(t_program *prog)
 {
-	reverse_rotate(b);
-	write(1, "rrb\n", 4);
+	reverse_rotate(&prog->b);
+	exec_op(prog, "rrb");
 }
 
-void	rrr(t_pile *a, t_pile *b)
+void	rrr(t_program *prog)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	reverse_rotate(&prog->a);
+	reverse_rotate(&prog->b);
+	exec_op(prog, "rrr");
 }

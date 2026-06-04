@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_all_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 01:21:05 by apolguil          #+#    #+#             */
-/*   Updated: 2026/05/30 19:13:01 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/03 20:18:09 by ahamed-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,22 @@ static void	check_complexity(char *arg, t_program *prog)
 		prog->strategy = FLAG_ADAPTIVE;
 }
 
-void	parse_program_flags(int argc, char **av, t_program *prog)
+void	parse_program_flags(int argc, char **argv, t_program *prog)
 {
 	int	i;
 
 	i = 1;
 	prog->strategy = FLAG_ADAPTIVE;
 	prog->is_bench = 0;
+	prog->op_count = 0; //compteur
 	
 	/*while (i <= 2 && i < argc)*/
 	while (i < argc)
 	{
-		if (ft_strcmp(av[i], "--bench") == 0)
+		if (ft_strcmp(argv[i], "--bench") == 0)
 			prog->is_bench = 1; 
 		else
-			check_complexity(av[i], prog); 
+			check_complexity(argv[i], prog); 
 		i++;
 	}
 }

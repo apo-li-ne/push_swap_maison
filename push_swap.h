@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 18:03:01 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/31 12:11:28 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/04 01:46:31 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ typedef struct s_program
 	t_pile	    b;
 	t_strategy  strategy;   // Stocke l'algo (Simple, Medium, etc.)
 	int         is_bench;   // Mode Bench : 0 (Désactivé) ou 1 (Activé)
+	int			 op_count; // Stocke le nombre d'operations
 }               t_program;
+
 
 int	int_is_valid(char *str);
 int     is_duplicate(t_pile *pile);
@@ -68,17 +70,30 @@ char	*ft_strchr(const char *s, int c);
 int	ft_strcmp(const char *s1, const char *s2);
 int	ft_atoi(const char *str);
 char	*ft_substr(const char *s, int start, int len);
+int     ft_strlen(char  *s);
 
-void	sa(t_pile *a);
-void	sb(t_pile *b);
-void	ss(t_pile *a, t_pile *b);
-void	pa(t_pile *a, t_pile *b);
-void	pb(t_pile *a, t_pile *b);
-void	ra(t_pile *a);
-void	rb(t_pile *b);
-void	rr(t_pile *a, t_pile *b);
-void	rra(t_pile *a);
-void	rrb(t_pile *b);
-void	rrr(t_pile *a, t_pile *b);
+void	sa(t_program *prog);
+void	sb(t_program *prog);
+void	ss(t_program *prog);
+void	pa(t_program *prog);
+void	pb(t_program *prog);
+void	ra(t_program *prog);
+void	rb(t_program *prog);
+void	rr(t_program *prog);
+void	rra(t_program *prog);
+void	rrb(t_program *prog);
+void	rrr(t_program *prog);
+void	exec_op(t_program *prog, char *op);
+
+
+int is_sorted(t_pile *pile);
+int	compute_disorder(t_pile *pile);
+
+void	sort_complex(t_program *prog);
+
+void	sort_two(t_program *prog);
+void	sort_three(t_program *prog);
+void	sort_simple(t_program *prog);
+void	sort_medium(t_program *prog);
 
 #endif

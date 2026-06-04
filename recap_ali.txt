@@ -1,0 +1,34 @@
+le 31/05/2026
+
+    Rajout de OP count pour garder et connaitre le nombre de chacune des operations effectuer
+
+j'ai mis opcount dans t_program et j'ai mis la fonction dans op.c et modifier les prototypes des fonctions dans .h et et dans le fichier op.c directement
+
+    creation de la fonction is sorted pour verifier si la fonction est déjà trier
+    creation d'un main de test
+
+2/06/2026
+    fonction de calcule de desordre dans sort_utils
+
+2/06/2026 apo
+    petite journee, j'ai fait le tri complex avec un radix, j'ai commente mais c'etait long a expliquer entierement, je t'explique demain de vive voix stv ! 
+3/06/2026
+    deplacement de radix de push_swap.c vert sort_complex
+    quelaues erreurs dans le code corriger car pa et pb ne prennent qu'un seul argument normalement
+3/06 apo
+    j ai fait le medium avec bruno
+    le concept : on a fait un chunksort c'est un algo qui prend sqrt (ft_sqrt que je code demain je suis faitguee) en nombre de chuncks qu'on va avoir.
+    Un chunck c'est un bloc d'un certain nombre d'entiers (notre nb total va etre divise en blocs d'une certaine taille/nb d entiers).
+
+    chaque chunk est envoye dans b : on va chercher tout les index qui rentrent dans notre chunck actuel
+    quand on en trouve un on le push dans b sinon, s'il n est pas dans notre chunck actuel on ra pour regarder le suivant
+    on fait ca jusqu'a ce qu'on ait plus rien dans a (on a push tout les chunks un par un)
+
+    ensuite on est dans b et on veut remettre les elements dans a mais de maniere a ce qu'ils soient tries
+    pour ce faire on va chercher le nombre de rotation necessaires pour mettre le + grand element de b en haut de b
+    avec un fonction qui cherche le prochain element a push
+    cette fonction elle va definir si le prochain element a push est situe dans la premiere ou deuxieme moitie de b
+    si c est negatif on veut rrb si c est positif on veut rb (pour faire moins d operations)
+    on execute toutes ces operations puis on pa
+
+    et on fait ca jusqu'a ce qu'il n y ait plus d'elements dans la stack b

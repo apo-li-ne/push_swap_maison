@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:28:22 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/31 10:53:45 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/03 00:42:43 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,6 @@ t_stack	*create_node(int value)
 	new_node->next = NULL;
 	return (new_node);
 }
-
-/*void	stack_add_back(t_stack **stack, t_stack *new_node)
-{
-	t_stack	*last;
-
-	if (!stack || !new_node)
-		return ;
-	if (!*stack) // Si la pile est vide il devient le premier element
-	{
-		*stack = new_node;
-		return ;
-	}
-	last = *stack;
-	while (last->next)
-		last = last->next;
-	last->next = new_node;
-	new_node->prev = last;
-}*/
 
 void	pile_add_back(t_pile *pile, t_stack *new_node)
 {

@@ -6,7 +6,7 @@
 /*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:36:43 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/04 01:45:08 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/06/07 22:22:29 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,15 @@ int	main(int argc, char **argv)
 
 	return (0); */
 
-
 	t_program	prog;
+	int			i;
+	float		disorder;
 
 	if (argc < 2)
 		return (0);
+	i = 0;
+	while (i < 11)
+		prog.counts[i++] = 0;
 	prog.a.top = NULL;
 	prog.a.last = NULL;
 	prog.a.size = 0;
@@ -138,8 +142,8 @@ int	main(int argc, char **argv)
 	parse_program_flags(argc, argv, &prog);
 	if (!init_stack_a(&prog, argc, argv))
 	{
-		free_stack(&prog.a);  // peut avoir des noeuds deja alloues
-		free_stack(&prog.b);  // vide mais pas grave d'appeler quand meme
+		free_stack(&prog.a);
+		free_stack(&prog.b);
 		write(2, "Error\n", 6);
 		return (1);
 	}
@@ -149,14 +153,17 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	assign_index(&prog.a);
+	disorder = compute_disorder(&prog.a);
 	if (prog.strategy == FLAG_SIMPLE)
 		sort_simple(&prog);
 	else if (prog.strategy == FLAG_COMPLEX)
 		sort_complex(&prog);
 	else if (prog.strategy == FLAG_MEDIUM)
-		sort_complex(&prog);
-	free_stack(&prog.a);
+		sort_medium(&prog);
+	else
+		sort_adaptive(&prog);
+	if (prog.is_bench)
+		print_bench(&prog, disorder);
 	free_stack(&prog.b);
 	return (0);
-
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_libft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:19:30 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/05/30 19:21:51 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/07 22:32:07 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,4 +175,14 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	}
 	return (NULL);
-}
+} 
+
+/*int	ft_sqrt(int n)
+{
+	int	i;
+
+	i = 0;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
+}*/

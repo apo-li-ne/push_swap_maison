@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 18:27:51 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/03 20:07:20 by ahamed-i         ###   ########.fr       */
+/*   Updated: 2026/06/07 22:32:17 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	is_sorted(t_pile *pile)
 	return (1);
 }
 
-int	compute_disorder(t_pile *pile)
+float	compute_disorder(t_pile *pile)
 {
 	t_stack	*n1;
 	t_stack	*n2;
-	int		mistake;
-	int		paires;
+	float		mistake;
+	float		paires;
 
 	if (!pile || pile->size < 2)
 		return (0);
@@ -61,4 +61,13 @@ int	compute_disorder(t_pile *pile)
 		return (0);
 		
 	return (mistake / paires);
+}
+int	ft_sqrt(int n)
+{
+	int	i;
+
+	i = 0;
+	while (i * i <= n)
+		i++;
+	return (i - 1);
 }

@@ -32,3 +32,19 @@ j'ai mis opcount dans t_program et j'ai mis la fonction dans op.c et modifier le
     on execute toutes ces operations puis on pa
 
     et on fait ca jusqu'a ce qu'il n y ait plus d'elements dans la stack b
+
+4/6/2026
+     . j ai declare des fonctions utilitaires de sort medium en static car on les utilises que pour sort_medium, pour ne pas
+     surcharger le push_swap.h
+     . remplacement du "type" de compute disorder en float au lieu de int pour avoir des valeurs avec virgules sinon que 0 ou 1
+     . coder sort adaptive, tres simple, si inferieur a 0.2, sort_simple, ... etc
+     . mis a jour de t_program pour rajouter un tableau de int de taille 11 pour stocker le compte de chacune des op
+     . mis a jour de exec_op dans op.c pour incrementer le tableau a chaque operation realiser.
+     . integration de la libft en entier
+     . rajout de printf egalement dans libft ( toutes les fonctions de printf ajouter dans libft.h et dans le makefile, modification des headers des fonctions de 
+       de printf pour etre libft.h)
+     . modification du makefile de pushswap pour prendre en compte libft ("make" pour lancer la compilation)
+     . codage du print_bench a l'aide des fonctions de printf
+     
+     . Si possible stp de terminer le medium quand tu peux comme ca on peut tester le mode benck mais aussi avec le fedora_cheker.
+     . Il reste que ca je pense, et la norminette 

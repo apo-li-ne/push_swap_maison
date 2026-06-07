@@ -6,7 +6,7 @@
 /*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 18:03:01 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/04 01:46:31 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/06/07 22:25:13 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "Libft/libft.h"
 
 typedef struct s_stack
 {
@@ -51,6 +52,7 @@ typedef struct s_program
 	t_strategy  strategy;   // Stocke l'algo (Simple, Medium, etc.)
 	int         is_bench;   // Mode Bench : 0 (Désactivé) ou 1 (Activé)
 	int			 op_count; // Stocke le nombre d'operations
+	int			counts[11]; // 0=sa 1=sb 2=ss 3=pa 4=pb 5=ra 6=rb 7=rr 8=rra 9=rrb 10=rrr
 }               t_program;
 
 
@@ -59,11 +61,14 @@ int     is_duplicate(t_pile *pile);
 void    assign_index(t_pile *pile);
 void	parse_program_flags(int argc, char **av, t_program *prog);
 int	init_stack_a(t_program *prog, int ac, char **av);
-int  init_from_split(t_program *prog, char *str);
+//int  init_from_split(t_program *prog, char *str);
 
 t_stack	*create_node(int value);
 void	pile_add_back(t_pile *pile, t_stack *new_node);
-
+void	free_stack(t_pile *pile);
+int		ft_sqrt(int n);
+//Ajout de libft
+/*
 char    **ft_split(char const *s, char c);
 void	free_split(char **split);
 char	*ft_strchr(const char *s, int c);
@@ -71,7 +76,7 @@ int	ft_strcmp(const char *s1, const char *s2);
 int	ft_atoi(const char *str);
 char	*ft_substr(const char *s, int start, int len);
 int     ft_strlen(char  *s);
-
+*/
 void	sa(t_program *prog);
 void	sb(t_program *prog);
 void	ss(t_program *prog);
@@ -87,13 +92,19 @@ void	exec_op(t_program *prog, char *op);
 
 
 int is_sorted(t_pile *pile);
-int	compute_disorder(t_pile *pile);
+float	compute_disorder(t_pile *pile);
 
 void	sort_complex(t_program *prog);
 
 void	sort_two(t_program *prog);
 void	sort_three(t_program *prog);
 void	sort_simple(t_program *prog);
+
 void	sort_medium(t_program *prog);
+
+void	sort_adaptive(t_program *prog);
+
+void	print_bench(t_program *prog, float disorder);
+
 
 #endif

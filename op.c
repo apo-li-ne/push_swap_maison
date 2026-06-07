@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 11:24:16 by apo               #+#    #+#             */
-/*   Updated: 2026/06/03 19:11:24 by ahamed-i         ###   ########.fr       */
+/*   Updated: 2026/06/07 22:08:15 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 void	exec_op(t_program *prog, char *op)
 {
 	prog->op_count++;
+	
+	if (ft_strcmp(op, "sa") == 0)
+		prog->counts[0]++;
+	else if (ft_strcmp(op, "sb") == 0)
+		prog->counts[1]++;
+	else if (ft_strcmp(op, "ss") == 0)
+		prog->counts[2]++;
+	else if (ft_strcmp(op, "pa") == 0)
+		prog->counts[3]++;
+	else if (ft_strcmp(op, "pb") == 0)
+		prog->counts[4]++;
+	else if (ft_strcmp(op, "ra") == 0)
+		prog->counts[5]++;
+	else if (ft_strcmp(op, "rb") == 0)
+		prog->counts[6]++;
+	else if (ft_strcmp(op, "rr") == 0)
+		prog->counts[7]++;
+	else if (ft_strcmp(op, "rra") == 0)
+		prog->counts[8]++;
+	else if (ft_strcmp(op, "rrb") == 0)
+		prog->counts[9]++;
+	else if (ft_strcmp(op, "rrr") == 0)
+		prog->counts[10]++;
 	write(1, op, ft_strlen(op));
 	write(1, "\n", 1);
 }
@@ -123,7 +146,7 @@ void	rr(t_program *prog)
 {
 	rotate(&prog->a);
 	rotate(&prog->b);
-	write(1, "rr\n", 3);
+	exec_op(prog, "rr");
 }
 
 void	reverse_rotate(t_pile *pile) //bon vraiment le même principe que rotate à l'envers

@@ -6,7 +6,7 @@
 /*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 18:05:07 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/04 18:19:00 by ahamed-i         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:30:15 by ahamed-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,33 @@ static void	print_bench_ops(t_program *prog)
 	ft_putstr_fd("\n", 2);
 }
 
-void	print_bench(t_program *prog, float disorder)
+static void	print_bench_strategy(t_program *prog, float disorder)
 {
-	ft_putstr_fd("[bench] disorder: ", 2);
-	ft_putnbr_fd((int)(disorder * 100), 2);
-	ft_putstr_fd(".", 2);
-	if ((int)(disorder * 10000) % 100 < 10)
-    	ft_putstr_fd("0", 2);
-	ft_putnbr_fd((int)(disorder * 10000) % 100, 2);
-	ft_putstr_fd("%\n[bench] strategy: ", 2);
+	ft_putstr_fd("[bench] strategy: ", 2);
 	if (prog->strategy == FLAG_SIMPLE)
 		ft_putstr_fd("Simple / O(n^2)\n", 2);
 	else if (prog->strategy == FLAG_MEDIUM)
 		ft_putstr_fd("Medium / O(n sqrt n)\n", 2);
 	else if (prog->strategy == FLAG_COMPLEX)
 		ft_putstr_fd("Complex / O(n log n)\n", 2);
+	else if (disorder < 0.2f)
+		ft_putstr_fd("Adaptive / O(n)\n", 2);
+	else if (disorder < 0.5f)
+		ft_putstr_fd("Adaptive / O(n sqrt n)\n", 2);
 	else
 		ft_putstr_fd("Adaptive / O(n log n)\n", 2);
+}
+
+void	print_bench(t_program *prog, float disorder)
+{
+	ft_putstr_fd("[bench] disorder: ", 2);
+	ft_putnbr_fd((int)(disorder * 100), 2);
+	ft_putstr_fd(".", 2);
+	if ((int)(disorder * 10000) % 100 < 10)
+		ft_putstr_fd("0", 2);
+	ft_putnbr_fd((int)(disorder * 10000) % 100, 2);
+	ft_putstr_fd("%\n", 2);
+	print_bench_strategy(prog, disorder);
 	ft_putstr_fd("[bench] total_ops: ", 2);
 	ft_putnbr_fd(prog->op_count, 2);
 	ft_putstr_fd("\n", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apo <apo@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 03:05:40 by apolguil          #+#    #+#             */
-/*   Updated: 2026/05/31 10:57:31 by apo              ###   ########.fr       */
+/*   Updated: 2026/06/08 22:40:45 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	int_is_valid(char *str)
 		if (str[i] == '-')
 			sign = -1;
 		i++;
-		}
+	}
 	if (!str[i])
 		return (0);
 	while (str[i])
@@ -34,7 +34,6 @@ int	int_is_valid(char *str)
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
 		n = n * 10 + (str[i++] - '0');
-		//gestion du oveflow
 		if ((sign * n) > INT_MAX || (sign * n) < INT_MIN)
 			return (0);
 	}

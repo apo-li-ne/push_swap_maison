@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
+/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 19:28:22 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/04 18:40:53 by ahamed-i         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:21:35 by apolguil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_stack	*create_node(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->value = value;
-	new_node->index = -1; // Sera rempli plus tard par assign_index
+	new_node->index = -1;
 	new_node->prev = NULL;
 	new_node->next = NULL;
 	return (new_node);
@@ -55,11 +55,11 @@ void	pile_add_back(t_pile *pile, t_stack *new_node)
 	else
 	{
 		new_node->next = NULL;
-		new_node->prev = pile->last;  // branche sur le dernier noeud connu
-		pile->last->next = new_node;  // ancien last pointe vers nouveau
-		pile->last = new_node;        // met à jour last
+		new_node->prev = pile->last;
+		pile->last->next = new_node;
+		pile->last = new_node;
 	}
-	pile->size++;                 // size à jour
+	pile->size++;
 }
 
 int	init_from_split(t_program *prog, char *str)
@@ -97,7 +97,7 @@ int	init_stack_a(t_program *prog, int ac, char **av)
 	{
 		if (!is_flag(av[i]))
 		{
-			if (ft_strchr(av[i], ' ')) //on parcourt tous les args, si pas un flag MAIS contient espace, c'est une string donc on split
+			if (ft_strchr(av[i], ' '))
 				return (init_from_split(prog, av[i]));
 			if (!int_is_valid(av[i]))
 				return (0);

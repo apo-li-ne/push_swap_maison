@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 19:16:00 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/07 23:41:08 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/06/08 21:06:57 by ahamed-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	sort_two(t_program *prog)
 		sa(prog);
 }
 
-// on cherche la position du minimum dans a
-// retourne le nombre de noeuds avant lui depuis le top
 static int	find_min_pos(t_pile *pile)
 {
 	t_stack	*tmp;
@@ -44,7 +42,6 @@ static int	find_min_pos(t_pile *pile)
 	return (min_pos);
 }
 
-// on fait remonter le min au top : ra si plus proche du haut, rra sinon
 static void	bring_min_to_top(t_program *prog)
 {
 	int	pos;
@@ -64,7 +61,7 @@ static void	bring_min_to_top(t_program *prog)
 	}
 	else
 	{
-		pos = size - pos; // nb de rra necessaires
+		pos = size - pos;
 		while (pos > 0)
 		{
 			rra(prog);
@@ -84,21 +81,16 @@ void	sort_three(t_program *prog)
 	c = prog->a.top->next->next->value;
 	if (a < b && b < c)
 		return ;
-	if (a < c && c < b)
-		return (void)(rra(prog));
-	if (b < a && a < c)
-		return (void)(sa(prog));
-	if (b < c && c < a)
-		return (void)(ra(prog));
-	if (c < a && a < b)
-	{
-		sa(prog);
+	else if (a < c && c < b)
 		rra(prog);
-		return ;
-	}
-	// cas restant : c < b < a -> ordre inverse total
-	ra(prog);
-	sa(prog);
+	else if (b < a && a < c)
+		sa(prog);
+	else if (b < c && c < a)
+		ra(prog);
+	else if (c < a && a < b)
+		(sa(prog), rra(prog));
+	else
+		(ra(prog), sa(prog));
 }
 
 void	sort_simple(t_program *prog)
@@ -115,15 +107,12 @@ void	sort_simple(t_program *prog)
 		sort_three(prog);
 		return ;
 	}
-	// phase 1 : on envoie les minimums un par un dans b
 	while (prog->a.size > 3)
 	{
 		bring_min_to_top(prog);
 		pb(prog);
 	}
-	// phase 2 : on trie les 3 restants dans a
 	sort_three(prog);
-	// phase 3 : on ramene tout de b vers a
 	while (prog->b.size > 0)
 		pa(prog);
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apolguil <apolguil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahamed-i <ali.hamed-ibrahim@learner.42.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 18:27:51 by ahamed-i          #+#    #+#             */
-/*   Updated: 2026/06/07 22:32:17 by apolguil         ###   ########.fr       */
+/*   Updated: 2026/06/08 20:53:30 by ahamed-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "push_swap.h"
-
+#include "push_swap.h"
 
 int	is_sorted(t_pile *pile)
 {
@@ -19,7 +18,6 @@ int	is_sorted(t_pile *pile)
 
 	if (!pile || !pile->top || pile->size < 2)
 		return (1);
-		
 	tmp = pile->top;
 	while (tmp->next)
 	{
@@ -34,15 +32,13 @@ float	compute_disorder(t_pile *pile)
 {
 	t_stack	*n1;
 	t_stack	*n2;
-	float		mistake;
-	float		paires;
+	float	mistake;
+	float	paires;
 
 	if (!pile || pile->size < 2)
 		return (0);
-
 	mistake = 0;
 	paires = 0;
-	
 	n1 = pile->top;
 	while (n1)
 	{
@@ -56,12 +52,11 @@ float	compute_disorder(t_pile *pile)
 		}
 		n1 = n1->next;
 	}
-
 	if (paires == 0)
 		return (0);
-		
 	return (mistake / paires);
 }
+
 int	ft_sqrt(int n)
 {
 	int	i;
